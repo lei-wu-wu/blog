@@ -1,0 +1,36 @@
+/*
+ *	作者：Araleii
+ *	邮箱:araleiiiiii@gmail.com
+ *	时间：2015-08-01
+ *	描述：数独
+*/
+
+tr {
+	text-align: center;
+}
+td {
+	text-align: center;
+}
+table {
+	text-align: center;
+	border: 2px solid black;
+}
+tbody {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+tr {
+	padding: 0;
+	margin: 0;
+}
+td {
+	padding: 0;
+	margin: 0;
+	height: 40px;
+	width: 40px;
+}
+body {
+	background-color: white;
+	font-family: "微软雅黑";
+}

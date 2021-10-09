@@ -1,0 +1,184 @@
+<!--
+	作者：Araleii
+	邮箱:araleiiiiii@gmail.com
+	时间：2015-08-01
+	描述：数独
+-->
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Sudoku</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class="row clearfix" style="height: 100px;">
+				<div class="col-md-4 column"></div>
+				<div style="text-align: center; padding: 30px;" class="col-md-4 column">
+					<h1>Sudoku Solver</h1><hr />
+				</div>
+				<div class="col-md-4 column"></div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div class="row clearfix">
+						<div class="col-md-4 column" style="text-align: center;padding: 30px;">
+							<button type="button" class="btn btn-success" onclick="generateSudoku(20);">生成简单题目</button>
+							<br />
+							<br />
+							<br />
+							<button type="button" class="btn btn-success" onclick="generateSudoku(55);">生成普通题目</button>
+							<br />
+							<br />
+							<br />
+							<button type="button" class="btn btn-success" onclick="generateSudoku(64);">生成困难题目</button>
+							<br />
+							<br />
+							<br />
+							<div id="startRun">
+								<button type="button" class="btn btn-warning btn-lg" onclick="startRun();">求解!</button>
+							</div>
+						</div>
+						<div class="col-md-4 column" style="text-align: center;">
+							<table style="margin: 0 auto;">
+								<tbody>
+									<tr style="border-top: 1px solid black;">
+										<td id="t00"></td>
+										<td id="t01"></td>
+										<td id="t02"></td>
+										<td style="border-left: 1px solid black;" id="t03"></td>
+										<td id="t04"></td>
+										<td id="t05"></td>
+										<td style="border-left: 1px solid black;" id="t06"></td>
+										<td id="t07"></td>
+										<td id="t08"></td>
+									</tr>
+									<tr>
+										<td id="t10"></td>
+										<td id="t11"></td>
+										<td id="t12"></td>
+										<td style="border-left: 1px solid black;" id="t13"></td>
+										<td id="t14"></td>
+										<td id="t15"></td>
+										<td style="border-left: 1px solid black;" id="t16"></td>
+										<td id="t17"></td>
+										<td id="t18"></td>
+									</tr>
+									<tr>
+										<td id="t20"></td>
+										<td id="t21"></td>
+										<td id="t22"></td>
+										<td style="border-left: 1px solid black;" id="t23"></td>
+										<td id="t24"></td>
+										<td id="t25"></td>
+										<td style="border-left: 1px solid black;" id="t26"></td>
+										<td id="t27"></td>
+										<td id="t28"></td>
+									</tr>
+									<tr style="border-top: 1px solid black;">
+										<td id="t30"></td>
+										<td id="t31"></td>
+										<td id="t32"></td>
+										<td style="border-left: 1px solid black;" id="t33"></td>
+										<td id="t34"></td>
+										<td id="t35"></td>
+										<td style="border-left: 1px solid black;" id="t36"></td>
+										<td id="t37"></td>
+										<td id="t38"></td>
+									</tr>
+									<tr>
+										<td id="t40"></td>
+										<td id="t41"></td>
+										<td id="t42"></td>
+										<td style="border-left: 1px solid black;" id="t43"></td>
+										<td id="t44"></td>
+										<td id="t45"></td>
+										<td style="border-left: 1px solid black;" id="t46"></td>
+										<td id="t47"></td>
+										<td id="t48"></td>
+									</tr>
+									<tr>
+										<td id="t50"></td>
+										<td id="t51"></td>
+										<td id="t52"></td>
+										<td style="border-left: 1px solid black;" id="t53"></td>
+										<td id="t54"></td>
+										<td id="t55"></td>
+										<td style="border-left: 1px solid black;" id="t56"></td>
+										<td id="t57"></td>
+										<td id="t58"></td>
+									</tr>
+									<tr style="border-top: 1px solid black;">
+										<td id="t60"></td>
+										<td id="t61"></td>
+										<td id="t62"></td>
+										<td style="border-left: 1px solid black;" id="t63"></td>
+										<td id="t64"></td>
+										<td id="t65"></td>
+										<td style="border-left: 1px solid black;" id="t66"></td>
+										<td id="t67"></td>
+										<td id="t68"></td>
+									</tr>
+									<tr>
+										<td id="t70"></td>
+										<td id="t71"></td>
+										<td id="t72"></td>
+										<td style="border-left: 1px solid black;" id="t73"></td>
+										<td id="t74"></td>
+										<td id="t75"></td>
+										<td style="border-left: 1px solid black;" id="t76"></td>
+										<td id="t77"></td>
+										<td id="t78"></td>
+									</tr>
+									<tr style="border-bottom: 1px solid black;">
+										<td id="t80"></td>
+										<td id="t81"></td>
+										<td id="t82"></td>
+										<td style="border-left: 1px solid black;" id="t83"></td>
+										<td id="t84"></td>
+										<td id="t85"></td>
+										<td style="border-left: 1px solid black;" id="t86"></td>
+										<td id="t87"></td>
+										<td id="t88"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-md-4 column" style="text-align: center; padding: 30px;">
+							<button type="button" class="btn btn-success" id="showInputBlank" onclick="showInputBlank();">手动输入</button>
+							<button type="button" class="btn btn-warning" style="display: none;" id="confirmInput" onclick="confirmInput();">输入完毕</button>
+							<div id="info" style="margin: 30px;">
+								<div id="showTimes"></div>
+								<br />
+								<div id="showDuration"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer" class="navbar-fixed-bottom" style="padding-bottom: 20px;">
+				<div class="col-md-12 column" style="text-align: center;">
+					<hr />
+					Copyright © 2015 Araleii.
+				</div>
+			</div>
+
+			<script type="text/javascript">
+				 //inputByString();
+				 //output();
+				 //startRun();
+			</script>
+
+	</body>
+
+</html>

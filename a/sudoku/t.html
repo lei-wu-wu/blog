@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function output() {
+				for (var i = 0; i < 9; i++) {
+					for (var j = 0; j < 9; j++) {
+						if (A[i][j] != 0) {
+							document.getElementById('t' + i + j).innerHTML = A[i][j];
+						} else {
+							document.getElementById('t' + i + j).innerHTML = '';
+							//document.getElementById('t' + i + j).style.backgroundColor = "skyblue";
+						}
+					}
+				}
+				for (var i = 0; i < 9; i++) {
+					for (var j = 0; j < 9; j++) {
+						if (B[i][j] == 0) {
+							document.getElementById('t' + i + j).style.backgroundColor = "skyblue";
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>
