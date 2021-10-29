@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-us">
+
+    <head>
+        <title>Ar4leii</title>
+        <link rel="stylesheet" type="text/css" href="../../../css/basscss.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/colors.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" />
+        <link type="text/css" rel="stylesheet" href="../../../css/index.css"/>
+    </head>
+
+    <body>
+        <div id="header">
+            <h1>Ar4leii's Blog</h1>
+        </div>
+        <hr/>
+        <!--header end-->
+
+        <link type="text/css" rel="stylesheet" href="../../../editor.md/css/editormd.min.css"/>
+        <div id="editor">
+            <textarea style="display:none;">
+## CentOS 7 firewall 操作参考
+
+
+### 常用方法
+
+防火墙开机启动
+
+```shell
+systemctl enable firewalld.service
+```
+
+查看防火墙状态
+
+```shell
+firewall-cmd --state
+```
+
+开启防火墙
+
+```shell
+systemctl start firewalld.service
+```
+
+查看 active zones
+
+```shell
+ firewall-cmd --get-active-zones
+```
+
+查看开放的端口
+
+```shell
+firewall-cmd --zone=public --list-ports
+```
+
+开放 8080 端口，关闭 80 端口
+
+```shell
+firewall-cmd --zone=public --add-port=8080/tcp --permanent
+firewall-cmd --zone=public --remove-port=80/tcp --permanent
+firewall-cmd --reload
+```
+
+重启
+
+```shell
+systemctl restart firewalld.service
+```
+
+重新加载载
+
+```shell
+firewall-cmd --reload
+```
+
+
+
+### 参考
+
+> https://www.cnblogs.com/wolf-sun/p/9953667.html
+
+> https://www.jb51.net/article/135124.htm
+            </textarea>
+        </div>
+
+        <script src="../../../editor.md/examples/js/jquery.min.js"></script>
+        <script src="../../../editor.md/lib/flowchart.min.js"></script>
+        <script src="../../../editor.md/lib/jquery.flowchart.min.js"></script>
+        <script src="../../../editor.md/lib/marked.min.js"></script>
+        <script src="../../../editor.md/lib/prettify.min.js"></script>
+        <script src="../../../editor.md/lib/raphael.min.js"></script>
+        <script src="../../../editor.md/lib/underscore.min.js"></script>
+        <script src="../../../editor.md/editormd.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var editor = editormd.markdownToHTML("editor", {
+                    width: "100%",
+                    height: "500px",
+                    watch: true,
+                    path : "../../../editor.md/lib/",
+                    // readOnly: true,
+                    watch: true,
+                    toolbar: false,
+                    // autoHeight: true,
+                });
+            });
+        </script>
+
+
+        <!--footer begin-->
+        <br/>
+        <a href="index.html">返回</a>
+        <a href="https://araleii.me">主页</a>
+        <hr/>
+        <div id="footer">
+            <p class="MsoNormal">&nbsp;</p>
+            &nbsp;<DT><B><FONT COLOR="#000080"><a href="mailto:bllwu@sina.com">Lei Wu</a></FONT></B></DT>
+            <DT>Chengdu City, Sichuan Province</DT>
+            <DT>People's Republic of China<BR></DT>
+            <FONT COLOR="#000080">Email: <a href="mailto:bllwu@sina.com">bllwu@sina.com</a><BR>
+                Copyright 2016-2021, Ar4leii</FONT></div>
+        </div>
+    </body>
+</html>
