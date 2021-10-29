@@ -182,3 +182,15 @@ div.WordSection1
     width: 100%;
     text-align: center;
 }
+
+#footer {
+    width: 100%;
+}
+
+#footer-v {
+}
+
+body {
+    width: 70%;
+    margin: 0 auto;
+}
