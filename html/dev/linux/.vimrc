@@ -275,3 +275,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" https://stackoverflow.com/questions/4710223/cursor-not-going-to-end-of-line-in-vim
+set selection=exclusive
