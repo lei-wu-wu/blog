@@ -1,0 +1,805 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.428571; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-width: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; border-right-style: none; border-right-color: currentcolor; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: medium; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; border-bottom-style: none; border-bottom-color: currentcolor; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: medium; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+
+@include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+
+/* =========== */
+
+/* pt-serif-regular - latin */
+/* pt-serif-italic - latin */
+/* pt-serif-700 - latin */
+/* pt-serif-700italic - latin */
+:root {
+	--active-file-bg-color: #dadada;
+	--active-file-bg-color: rgba(32, 43, 51, 0.63);
+	--active-file-text-color: white;
+	--bg-color: #f3f2ee;
+	--text-color: #1f0909;
+	--control-text-color: #444;
+	--rawblock-edit-panel-bd: #e5e5e5;
+
+	--select-text-bg-color: rgba(32, 43, 51, 0.63);
+  --select-text-font-color: white;
+}
+
+pre {
+	--select-text-bg-color: #36284e;
+	--select-text-font-color: #fff;
+}
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+}
+
+html, body {
+	background-color: #f3f2ee;
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+	color: #1f0909;
+	line-height: 1.5em;
+}
+
+/*#write {
+	overflow-x: auto;
+    max-width: initial;
+	padding-left: calc(50% - 17em);
+    padding-right: calc(50% - 17em);
+}
+
+@media (max-width: 36em) {
+ 	#write {
+ 		padding-left: 1em;
+    	padding-right: 1em;
+ 	}
+}*/
+
+#write {
+	max-width: 40em;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+			max-width: 914px;
+	}
+}
+
+ol li {
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+ul li {
+	list-style-type: disc;
+	list-style-position: outside;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* styles */
+
+/* ====== */
+
+/* headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 1.875em;
+	/*30 / 16*/
+	line-height: 1.6em;
+	/* 48 / 30*/
+	margin-top: 2em;
+}
+h2,
+h3 {
+	font-size: 1.3125em;
+	/*21 / 16*/
+	line-height: 1.15;
+	/*24 / 21*/
+	margin-top: 2.285714em;
+	/*48 / 21*/
+	margin-bottom: 1.15em;
+	/*24 / 21*/
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-size: 1.125em;
+	/*18 / 16*/
+	margin-top: 2.67em;
+	/*48 / 18*/
+}
+h5,
+h6 {
+	font-size: 1em;
+	/*16*/
+}
+h1 {
+	border-bottom: 1px solid;
+	margin-bottom: 1.875em;
+	padding-bottom: 0.8125em;
+}
+/* links */
+
+a {
+	text-decoration: none;
+	color: #065588;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+/* block spacing */
+
+p,
+blockquote,
+.md-fences {
+	margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 1.5em;
+}
+/* blockquote */
+
+blockquote {
+	font-style: italic;
+	border-left: 5px solid;
+	margin-left: 2em;
+	padding-left: 1em;
+}
+/* lists */
+
+ul,
+ol {
+	margin: 0 0 1.5em 1.5em;
+}
+/* tables */
+.md-meta,.md-before, .md-after {
+	color:#999;
+}
+
+table {
+	margin-bottom: 1.5em;
+	/*24 / 16*/
+	font-size: 1em;
+	/* width: 100%; */
+}
+thead th,
+tfoot th {
+	padding: .25em .25em .25em .4em;
+	text-transform: uppercase;
+}
+th {
+	text-align: left;
+}
+td {
+	vertical-align: top;
+	padding: .25em .25em .25em .4em;
+}
+
+code,
+.md-fences {
+	background-color: #dadada;
+}
+
+code {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.md-fences {
+	margin-left: 2em;
+	margin-bottom: 3em;
+	padding-left: 1ch;
+	padding-right: 1ch;
+}
+
+pre,
+code,
+tt {
+	font-size: .875em;
+	line-height: 1.714285em;
+}
+/* some fixes */
+
+h1 {
+	line-height: 1.3em;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+
+p + ul,
+p + ol{
+	margin-top: .5em;
+}
+
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol {
+	margin-top: .5em;
+}
+
+li > ul,
+li > ol {
+	margin-top: inherit;
+	margin-bottom: 0;
+}
+
+li ol>li {
+	list-style-type: lower-alpha;
+}
+
+li li ol>li{
+	list-style-type: lower-roman;
+}
+
+h2,
+h3 {
+	margin-bottom: .75em;
+}
+hr {
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid;
+	border-left: none;
+}
+h1 {
+	border-color: #c5c5c5;
+}
+blockquote {
+	border-color: #bababa;
+	color: #656565;
+}
+
+blockquote ul,
+blockquote ol {
+	margin-left:0;
+}
+
+.ty-table-edit {
+	background-color: transparent;
+}
+thead {
+	background-color: #dadada;
+}
+tr:nth-child(even) {
+	background: #e8e7e7;
+}
+hr {
+	border-color: #c5c5c5;
+}
+.task-list{
+	padding-left: 1rem;
+}
+
+.md-task-list-item {
+	padding-left: 1.5rem;
+	list-style-type: none;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.25rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #F3F2EE;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+
+#write pre.md-meta-block {
+	min-height: 1.875rem;
+	color: #555;
+	border: 0px;
+	background: transparent;
+	margin-top: -4px;
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+.md-image>.md-meta {
+	color: #9B5146;
+}
+
+.md-image>.md-meta{
+	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+}
+
+
+#write>h3.md-focus:before{
+	left: -1.5rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h4.md-focus:before{
+	left: -1.5rem;
+	top: .25rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h5.md-focus:before{
+	left: -1.5rem;
+	top: .0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h6.md-focus:before{
+	left: -1.5rem;
+	top: 0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+.md-toc-content:empty:before{
+	color: #065588;
+}
+.md-toc-item {
+	color: #065588;
+}
+#write div.md-toc-tooltip {
+	background-color: #f3f2ee;
+}
+
+#typora-sidebar {
+	background-color: #f3f2ee;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+}
+
+.pin-outline #typora-sidebar {
+	background: inherit;
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+.pin-outline #typora-sidebar:hover .outline-title-wrapper {
+	border-left:1px dashed;
+}
+
+.outline-item:hover {
+  background-color: #dadada;
+  border-left: 28px solid #dadada;
+  border-right: 18px solid #dadada;
+}
+
+.typora-node .outline-item:hover {
+  	border-right: 28px solid #dadada;
+}
+
+.outline-expander:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size:14px;
+  top: 1px;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  content: "\f0d7";
+}
+
+.modal-content {
+	background-color: #f3f2ee;
+}
+
+.auto-suggest-container ul li {
+	list-style-type: none;
+}
+
+/** UI for electron */
+
+.megamenu-menu,
+#top-titlebar, #top-titlebar *,
+.megamenu-content {
+	background: #f3f2ee;
+	color: #1f0909;
+}
+
+.megamenu-menu-header {
+	border-bottom: 1px dashed #202B33;
+}
+
+.megamenu-menu {
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+header, .context-menu, .megamenu-content, footer {
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+    color: #1f0909;
+}
+
+#megamenu-back-btn {
+	color: #1f0909;
+	border-color: #1f0909;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+	color: #1f0909;
+}
+
+.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
+	color: inherit;
+	background-color: #e8e7df;
+}
+
+.long-btn:hover {
+	background-color: #e8e7df;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+	background-color: #D2D1D1;
+}
+
+.btn-default {
+	background-color: transparent;
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+.ty-show-word-count #footer-word-count {
+	background: #c7c5c5;
+}
+
+#typora-quick-open {
+    background-color: inherit;
+}
+
+.md-diagram-panel {
+	margin-top: 8px;
+}
+
+.file-list-item-file-name {
+	font-weight: initial;
+}
+
+.file-list-item-summary {
+	opacity: 1;
+}
+
+.file-list-item {
+	color: #777;
+}
+
+.file-list-item.active {
+	background-color: inherit;
+	color: black;
+}
+
+.ty-side-sort-btn.active {
+	background-color: inherit;
+}
+
+.file-list-item.active .file-list-item-file-name  {
+	font-weight: bold;
+}
+
+.file-list-item{
+    opacity:1 !important;
+}
+
+.file-library-node.active>.file-node-background{
+	background-color: rgba(32, 43, 51, 0.63);
+	background-color: var(--active-file-bg-color);
+}
+
+.file-tree-node.active>.file-node-content{
+	color: white;
+	color: var(--active-file-text-color);
+}
+
+.md-task-list-item>input {
+	margin-left: -1.7em;
+	margin-top: calc(1rem - 12px);
+	-webkit-appearance: button;
+}
+
+input {
+	border: 1px solid #aaa;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover, 
+.megamenu-menu-header:focus {
+	color: inherit;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+	opacity: 1;
+}
+
+/* https://github.com/typora/typora-issues/issues/2046 */
+.os-windows-7 strong,
+.os-windows-7 strong  {
+	font-weight: 760;
+}
+
+.ty-preferences .btn-default {
+	background: transparent;
+}
+
+.ty-preferences .window-header {
+	border-bottom: 1px dashed #202B33;
+	box-shadow: none;
+}
+
+#sidebar-loading-template, #sidebar-loading-template.file-list-item {
+	color: #777;
+}
+
+.searchpanel-search-option-btn.active {
+	background: #777;
+	color: white;
+}
+
+.export-detail, .light .export-detail, 
+.light .export-item.active, 
+.light .export-items-list-control {
+	background: #e0e0e0;
+	border-radius: 2px;
+	font-weight: 700;
+	color: inherit
+}
+
+ @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
+</style><title>全球AI安全浪潮下的双轨并行与中国市场的演进路径分析</title>
+</head>
+<body class='typora-export typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#浅谈全球ai安全浪潮下的双轨并行与中国市场的演进路径分析"><strong>浅谈全球AI安全浪潮下的双轨并行与中国市场的演进路径分析</strong></a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#一-起点政策引导与市场风险两种不同的初始驱动力"><strong>一、 起点：政策引导与市场风险，两种不同的初始驱动力</strong></a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#二-技术架构外部防护与内生安全两种不同的技术哲学"><strong>二、 技术架构：外部防护与内生安全，两种不同的技术哲学</strong></a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#三-产业生态人才协作与认知发展路径差异的背后"><strong>三、 产业生态：人才、协作与认知，发展路径差异的背后</strong></a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#四-展望从合规优先到韧性构建的演进之路"><strong>四、 展望：从合规优先到韧性构建的演进之路</strong></a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='浅谈全球ai安全浪潮下的双轨并行与中国市场的演进路径分析'><strong><span>浅谈全球AI安全浪潮下的双轨并行与中国市场的演进路径分析</span></strong></h1><blockquote><p><span>标题以及文章润色来自 Gemini-2.5-Pro</span></p></blockquote><p><span>人工智能作为重塑21世纪的关键力量，正展现出机遇与挑战并存的双重属性。它既是推动生产力变革的强大引擎，也带来了潜在的新型风险。当全球共同参与这场由算法和数据驱动的变革时，一个核心议题随之出现：如何确保人工智能技术在迈向未来的过程中，能够安全、可靠且稳健地发展？</span></p><p><span>一场围绕AI安全（我们现在常说的 安全 For AI）的全球性产业布局正在展开。当我们审视全球市场时，可以观察到两条并行但各具特点的发展路径。一条路径以欧美市场为代表，在企业内生风险和前瞻性监管框架的共同作用下，形成了强调AI系统全生命周期防护与内在加固的</span><strong><span>韧性构建范式</span></strong><span>。另一条路径则以现阶段的中国市场为代表，在明确且强力的合规要求驱动下，优先发展以内容审核、外部防护与集中监控为特点的</span><strong><span>合规优先范式</span></strong><span>。</span></p><p><span>这两种路径的形成，并非简单的技术优劣之分，其背后反映了不同市场在监管哲学、产业生态、创新机制和风险认知优先级上的差异。结合我最近参与了众多国内厂商针对 安全 For AI 的技术合作交流，我肤浅的梳理这篇散记，来尝试分析这两种范式的内在逻辑与市场表现，并以此为参照，浅浅探讨中国AI安全产业在快速响应合规需求的同时，所面临的下一阶段发展课题与未来方向。</span></p><h4 id='一-起点政策引导与市场风险两种不同的初始驱动力'><strong><span>一、 起点：政策引导与市场风险，两种不同的初始驱动力</span></strong></h4><p><span>一个新兴产业的初始形态，往往由其所处的环境和最初的驱动力决定。AI安全赛道在全球范围内的兴起，其起点便呈现出显著差异。</span></p><p><strong><span>中国的路径：政策驱动下的快速响应</span></strong></p><p><span>中国AI安全市场的兴起，在很大程度上是一场由顶层设计和政策法规引导的快速部署。自2023年起，以国家网信办等七部门联合发布的《生成式人工智能服务管理暂行办法》为标志，一系列法规为AI服务划定了清晰的责任边界。这些法规的核心要求主要集中于两点：一是</span><strong><span>内容安全</span></strong><span>，要求服务提供者对生成内容承担责任，防范违法和不良信息；二是</span><strong><span>数据安全</span></strong><span>，确保AI应用中个人信息和重要数据的处理符合法律规定 。</span></p><p><span>这些明确、具体且具有强制性的合规要求，为市场创造了巨大而紧迫的需求。对于众多正在开发或应用大模型的中国企业而言，AI安全的首要任务是解决一个现实问题：如何确保业务满足监管要求并顺利通过备案？。这种需求直接塑造了安全厂商的产品形态，即快速提供能够有效进行内容过滤、数据审计和满足备案要求的解决方案。这解释了为何国内市场能在短时间内涌现出大量AI安全产品，它们精准地满足了当前阶段以合规为核心的市场需求。</span></p><p><strong><span>欧美的路径：市场与风险双轮驱动的演化</span></strong></p><p><span>相比之下，欧美市场的AI安全需求，更多源自企业内生的风险管理和商业焦虑。这种模式的逻辑根植于其成熟的法律体系和商业环境中对风险的精细化管理。</span></p><p><span>首先是</span><strong><span>高昂的商业与法律风险</span></strong><span>。在成熟的商业社会中，AI模型的缺陷可能带来严重的法律后果和经济损失。一个存在偏见的招聘模型可能引发集体诉讼；一个被恶意攻击的金融风控模型可能导致巨额坏账；一个存在漏洞的医疗诊断AI则可能威胁生命安全。这种对潜在损失的量化担忧，迫使企业寻求能从根本上降低风险的解决方案。</span></p><p><span>其次是</span><strong><span>核心知识产权的保护</span></strong><span>。对于拥有先进基础模型的科技巨头而言，模型本身是其耗费巨资研发的核心资产。模型窃取、模型逆向等攻击，直接威胁到企业的核心竞争力，是必须防范的重大风险。</span></p><p><span>最后是</span><strong><span>前瞻性监管框架的引导</span></strong><span>。以欧盟里程碑式的《AI法案》（EU AI Act）和美国国家标准与技术研究院（NIST）的《AI风险管理框架》（AI RMF）为代表，西方的监管哲学更侧重于风险分级和过程治理。例如，欧盟《AI法案》将AI系统按风险高低分为不可接受、高、有限和最低四个等级，并施以不同的监管要求。NIST的AI RMF则提供了一套包含治理（Govern）、映射（Map）、测量（Measure）和管理（Manage）四大功能的方法论，引导企业系统性地管理AI全生命周期的风险。这些框架并不直接指令企业具体操作，而是引导其思考：我的AI属于哪个风险等级？我该如何进行全过程的风险管理？，从而将市场需求引向更全面、更深入的安全解决方案。</span></p><h4 id='二-技术架构外部防护与内生安全两种不同的技术哲学'><strong><span>二、 技术架构：外部防护与内生安全，两种不同的技术哲学</span></strong></h4><p><span>驱动力的差异，直接体现在AI安全产品的技术架构和设计哲学上，形成了以外部防护为核心和以内生安全为核心的两种主流技术路径。</span></p><p><strong><span>外部防护架构：以安全网关和运营平台为中心</span></strong></p><p><span>国内厂商当前的产品布局，清晰地展现了以外部防护为核心的构建思路。其体系通常由AI安全网关、大模型安全评测和AI安全运营平台三部分组成。这套逻辑可以概括为：</span></p><ol start='' ><li><strong><span>边界防护（网关）</span></strong><span>：在AI应用与用户之间部署一道防火墙，对输入的提示词（Prompts）和模型的输出进行检测，拦截已知的恶意攻击和不合规内容。</span></li><li><strong><span>定期评估（评测）</span></strong><span>：通过漏洞扫描、渗透测试和红队服务，对AI系统进行周期性体检，发现潜在的安全隐患。</span></li><li><strong><span>集中监控（运营平台）</span></strong><span>：建立一个中央监控中心，汇集来自网关的告警和评估发现的问题，进行统一的态势感知和应急响应。</span></li></ol><p><span>这种模式的优势在于其部署相对便捷，对现有AI研发流程侵入性小，能够快速满足合规检查的需求。然而，其局限性在于它的后置性，主要作用于AI系统的外围。对于深入到AI模型内部的深层威胁，例如训练数据投毒、模型后门、巧妙的对抗性攻击等，其防护能力有限。在MITRE ATLAS等AI攻击框架中定义的大多数针对模型本身的攻击，都可能绕过这种外部防御。</span></p><p><strong><span>内生安全架构：以全生命周期安全为核心</span></strong></p><p><span>与外部防护架构相对应的是以内生安全为核心的全生命周期方法，其代表是</span><strong><span>谷歌的安全人工智能框架（SAIF）</span><span>*</span><em><span>和</span><span>*</span></em><span>微软的安全开发生命周期（SDL）</span></strong><span>。这种理念的核心，并非仅仅在外部构建防御工事，而是致力于提升AI系统自身的“免疫力”，将安全能力内嵌于其构建和运行的每一个阶段。</span></p><p><span>这一理念主要通过以下关键实践落地：</span></p><ol start='' ><li><strong><span>安全的AI供应链</span></strong><span>：确保AI模型所依赖的训练数据、开源组件、第三方API和预训练模型本身是安全可信的。这推动了对</span><strong><span>模型物料清单（MBOM, Model Bill of Materials）</span></strong><span>、数据溯源和数据污染检测等技术的需求。</span></li><li><strong><span>设计与开发阶段的安全融入</span></strong><span>：在模型设计和开发之初就引入安全考量。这包括通过威胁建模来预判潜在攻击路径，采用差分隐私、联邦学习等隐私增强技术，以及进行模型架构层面的安全加固。</span></li><li><strong><span>持续的自动化测试（MLSecOps）</span></strong><span>：将安全无缝集成到机器学习的开发运维（MLSecOps）流程中。通过自动化的对抗性测试（Automated Red Teaming）和持续的漏洞验证，使模型在上线前就经历充分的压力测试，增强其鲁棒性。</span></li><li><strong><span>运行时的深度威胁检测</span></strong><span>：在模型运行时，不仅监测外部流量，更要监测其内部行为的异常。这正是海外一些创新公司的专长所在，例如，</span><strong><span>HiddenLayer</span></strong><span>专注于AI模型的运行时威胁检测与响应，其技术如同监测系统内部行为的传感器，能及时发现模型规避、推理攻击等深度威胁的早期信号。</span></li></ol><p><span>在美国，围绕这一内生安全理念，已形成一个分工明确的创新生态。例如，</span><strong><span>Protect AI</span></strong><span>专注于保护AI供应链的安全，</span><strong><span>Robust Intelligence</span></strong><span>提供模型压力测试与验证平台，而</span><strong><span>HiddenLayer</span></strong><span>则深耕运行时防护。它们共同构成了一个可组合的、深入AI肌理的安全体系，其防御深度和广度，为应对复杂多变的AI威胁提供了更全面的解决方案。</span></p><h4 id='三-产业生态人才协作与认知发展路径差异的背后'><strong><span>三、 产业生态：人才、协作与认知，发展路径差异的背后</span></strong></h4><p><span>技术架构的选择，其背后是产业生态在人才结构、协作模式和风险认知上的差异。</span></p><p><strong><span>人才与创新的流动</span></strong><span>：在美国，顶尖大学的AI研究实验室与产业界之间存在高效的互动。前沿研究成果通过风险投资的支持，可以迅速转化为初创公司的商业产品，形成了从学术到市场的流畅通道。在中国，顶尖AI人才资源丰富，但目前更多地集中在大型科技公司的核心业务部门，AI安全作为一个高度交叉的细分领域，对顶级算法人才的吸引力仍在逐步建立中。</span></p><p><strong><span>产业协作的模式</span></strong><span>：欧美的AI安全社区受益于深厚的开源文化和协作精神。从底层的攻防工具库（如ART、Counterfit）到上层的威胁知识框架（如MITRE ATLAS），开放共享的资源极大地促进了整个行业的知识迭代和创新效率。相比之下，国内市场现阶段更倾向于构建功能全面的、相对独立的商业产品体系。这种模式有其商业逻辑，但在行业标准、威胁情报共享等方面，开放协作的生态仍有待进一步发展。</span></p><p><strong><span>风险认知的优先级</span></strong><span>：在欧美企业中，AI安全风险正逐渐被量化为财务指标，直接与潜在罚款、股价波动、客户流失等挂钩。这种量化评估驱动企业为能够切实降低财务风险的深度安全解决方案付费。在当前中国市场的语境下，最紧迫且最易量化的风险是合规风险。因此，企业为满足监管要求付费的意愿，自然高于为防范未来可能发生的复杂技术攻击付费的意愿。这种认知优先级的差异，直接影响了安全厂商的研发投入方向。</span></p><h4 id='四-展望从合规优先到韧性构建的演进之路'><strong><span>四、 展望：从合规优先到韧性构建的演进之路</span></strong></h4><p><span>分析差异的目的，是为了更清晰地规划未来。中国AI安全产业正站在一个关键的演进节点，即在满足当前市场需求的基础上，向构建长期核心能力的方向发展。</span></p><p><span>首先，</span><strong><span>市场需求将自然演进</span></strong><span>。随着AI技术从通用内容生成，逐步深入到金融、制造、能源、交通等关系国计民生的核心领域，其安全问题将超越内容合规的范畴，直接关联到生产安全、金融稳定和社会秩序。届时，市场的需求重心将自然地从满足合规，向保障业务连续性和系统韧性拓展。</span></p><p><span>其次，</span><strong><span>技术路线需要融合深化</span></strong><span>。中国厂商可以发挥在平台化产品和工程化能力上的优势，逐步将研发重心向内生安全领域拓展，拥抱全生命周期的安全理念。这意味着需要将安全能力“左移”，与客户的AI开发流程深度集成，提供覆盖模型训练、测试、部署和运维的全方位服务，其长期价值将远超于一份静态的“合规体检报告”。</span></p><p><span>最后，</span><strong><span>生态共建是长远之策</span></strong><span>。一个健康发展的产业，需要领军企业展现出超越短期商业竞争的格局。未来，牵头建立行业共通的AI威胁知识库、共享脱敏的攻击样本与防御经验、与学术界建立更紧密的产学研合作，虽然短期内可能削弱个别企业的商业壁垒，但长期看将做大整个市场的蛋糕，并构筑起国家在AI安全领域的整体竞争力。</span></p><p><strong><span>结语</span></strong></p><p><span>当前中国AI安全市场的特点，是特定发展阶段下，市场理性选择与深层课题共同作用的结果。它展现了中国市场在政策引导下卓越的响应速度和执行力，同时也提示我们需要在核心技术创新和产业生态建设上进行更长远的布局。</span></p><p><span>对于中国的AI产业而言，真正的安全感，长远来看既需要合规的护栏（各种厂商的“安全围栏”类产品），更需要AI系统自身坚实可靠的内在韧性。完成从合规优先到韧性构建的范式演进与融合，不仅是一场技术路线的升级，更是一次涉及战略、认知和生态的深刻探索。唯有如此，才能确保中国的AI巨轮，在这场全球性的技术变革中行稳致远。</span></p><blockquote><p><span>但是最后，我仍然有一个疑问，抛离AI安全本身，这一波热潮下的AI自身能力落地，会不会问题远大于AI安全呢？</span></p></blockquote><hr /><p><span>REF:</span></p><ol start='' ><li><a href='https://www.kwm.com/cn/zh/insights/latest-thinking/china-first-interim-regulatory-measure-on-aigc.html'><span>《生成式人工智能服务管理暂行办法》四大亮点解析 - 君合</span></a></li><li><a href='https://www.freebuf.com/news/427453.html'><span>Google AI 安全框架SAIF详解：六大核心要素与风险地图一览 - FreeBuf</span></a></li><li><a href='https://www.secrss.com/articles/52307'><span>美国NIST《AI风险管理框架1.0》解读- 安全内参</span></a></li><li><a href='https://www.kwm.com/cn/zh/insights/latest-thinking/eu-ai-act-main-supervision-and-incentive-measures.html'><span>路未央，花已遍芳——欧盟《人工智能法案》主要监管及激励措施评述 - King &amp; Wood Mallesons</span></a></li><li><a href='https://digital.gmw.cn/2023-12/21/content_37044038.htm'><span>欧盟《人工智能法案》实行风险分级监管 - 数字化频道- 光明网</span></a></li><li><a href='http://www.ecas.cas.cn/xxkw/kbcd/201115_129633/ml/xxhzlyzc/202303/t20230327_4939694.html'><span>美国家标准与技术研究院发布《人工智能风险管理框架》</span></a></li><li><a href='https://stli.iii.org.tw/article-detail.aspx?no=64&amp;tp=1&amp;d=8974'><span>美國國家標準與技術研究院公布人工智慧風險管理框架（AI RMF 1.0）</span></a></li><li><a href='https://safety.google/intl/zh-HK/cybersecurity-advancements/saif/'><span>Google 安全AI 框架(SAIF)</span></a></li><li><a href='https://developers.googleblog.com/zh-hans/navigating-ai-safety-compliance-a-guide-for-ctos/'><span>AI 安全与合规引导：首席技术官指南</span></a></li><li><a href='https://mlsecops.com/'><span>MLSecOps: Home</span></a></li><li><a href='https://www.secrss.com/articles/64131?app=1'><span>从HiddenLayer看什么是模型应用安全</span></a></li><li><a href='https://m.cyzone.cn/article/741183.html'><span>全面保护AI安全，HiddenLayer获5000万美元A轮融资 - 创业邦</span></a></li><li><a href='https://www.secrss.com/articles/60034'><span>LLM时代，你应当认识的三家AI安全厂商</span></a></li><li><a href='https://github.com/RiccardoBiosas/awesome-MLSecOps'><span>RiccardoBiosas/awesome-MLSecOps: A curated list of MLSecOps tools, articles and other resources on security applied to Machine Learning and MLOps systems. - GitHub</span></a></li><li><a href='https://news.owlting.com/articles/224321'><span>NIST 透過AI RMF 人工智慧風險管理框架解決人工智慧隱憂 - 奧丁丁新聞OwlNews</span></a></li><li><a href='https://www.kaamel.com/blog/article/7bd7629a-0ada-4065-a20c-c0d47960b8a9'><span>法规研究｜面向未来的治理：全球首个人工智能法案即将生效，你需要知道些什么？ - Kaamel</span></a></li><li><a href='https://stli.iii.org.tw/article-detail.aspx?tp=1&amp;d=9322&amp;no=64'><span>歐盟執委會發布《受禁止人工智慧行為指引》</span></a></li><li><a href='https://www.nist.gov/itl/ai-risk-management-framework'><span>AI Risk Management Framework | NIST</span></a></li><li><a href='https://www.kwm.com/cn/zh/insights/latest-thinking/china-first-interim-regulatory-measure-on-aigc.html'><span>“卧看星河尽意明”——全球首部生成式人工智能法规解读 - King &amp; Wood Mallesons</span></a></li><li><a href='https://www.liu-shen.com/Content-3341.html'><span>文章精选|《生成式人工智能服务管理暂行办法》分析解读 - Liu Shen</span></a></li><li><a href='https://www.cac.gov.cn/2023-07/13/c_1690898363806525.htm'><span>专家解读｜推动生成式人工智能精细化治理 - 中央网信办</span></a></li><li><a href='https://medium.com/@bijit211987/adopting-mlsecops-securing-machine-learning-at-scale-1a5647d01a64'><span>Adopting MLSecOps: Securing Machine Learning at Scale | by Bijit Ghosh | Medium</span></a></li></ol></div></div>
+
+<script>(function(){var t=document.body.parentElement,e=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(t,e,n){document.addEventListener(t,function(t){if(!t.defaultPrevented)for(var i=t.target;i&&i!=this;i=i.parentNode)if(i.matches(e)){!1===n.call(i,t)&&(t.preventDefault(),t.stopPropagation());break}},!1)};function o(){return t.scrollTop}r("click",".outline-expander",function(t){var e=this.closest(".outline-item-wrapper").classList;return e.contains("outline-item-open")?e.remove("outline-item-open"):e.add("outline-item-open"),c(),!1}),r("click",".outline-item",function(t){var e=this.querySelector(".outline-label");if(location.hash="#"+e.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),l(),n.add("outline-item-active")}});var a,s,u=function(){var t=o();n=null;for(var i=0;i<e.length&&e[i][1]-t<60;i++)n=e[i]},l=function(){document.querySelectorAll(".outline-item-active").forEach(t=>t.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(t=>t.classList.remove("outline-item-open"))},c=function(){if(n){l();var t=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(t)if(i){var e=t.closest(".outline-item-open>ul>.outline-item-wrapper");if(e)e.classList.add("outline-item-active");else{for(var r=(t=t.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(t=r).parentElement.closest(".outline-item-wrapper");t.classList.add("outline-item-active")}}else t.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(t){a&&clearTimeout(a),a=setTimeout(function(){u(),c()},300)});var f=function(){s=setTimeout(function(){!function(){e=[];var t=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");e.push([i,t+n.getBoundingClientRect().y])})}(),u(),c()},300)};window.addEventListener("resize",function(t){s&&clearTimeout(s),f()}),f()})();</script></body>
+</html>
