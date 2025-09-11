@@ -258,3 +258,17 @@ hr {
         margin-right: 0;
     }
 }
+
+/* Footer */
+.site-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #738491;
+}
+
+.site-footer p {
+    margin: 0.25rem 0;
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <title>My Blog Post</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <div id="header">
+        <h1>Ar4leii's Blog</h1>
+    </div>
+    <hr/>
+    <!--header end-->
+
+    <div id="content" class="markdown-body">
+        <h2>CentOS 7 firewall 操作参考</h2>
+<h3>常用方法</h3>
+<p>防火墙开机启动</p>
+<div class="highlight"><pre><span></span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>firewalld.service
+</pre></div>
+<p>查看防火墙状态</p>
+<div class="highlight"><pre><span></span>firewall-cmd<span class="w"> </span>--state
+</pre></div>
+<p>开启防火墙</p>
+<div class="highlight"><pre><span></span>systemctl<span class="w"> </span>start<span class="w"> </span>firewalld.service
+</pre></div>
+<p>查看 active zones</p>
+<div class="highlight"><pre><span></span>firewall-cmd<span class="w"> </span>--get-active-zones
+</pre></div>
+<p>查看开放的端口</p>
+<div class="highlight"><pre><span></span>firewall-cmd<span class="w"> </span>--zone<span class="o">=</span>public<span class="w"> </span>--list-ports
+</pre></div>
+<p>开放 8080 端口，关闭 80 端口</p>
+<div class="highlight"><pre><span></span>firewall-cmd<span class="w"> </span>--zone<span class="o">=</span>public<span class="w"> </span>--add-port<span class="o">=</span><span class="m">8080</span>/tcp<span class="w"> </span>--permanent
+firewall-cmd<span class="w"> </span>--zone<span class="o">=</span>public<span class="w"> </span>--remove-port<span class="o">=</span><span class="m">80</span>/tcp<span class="w"> </span>--permanent
+firewall-cmd<span class="w"> </span>--reload
+</pre></div>
+<p>重启</p>
+<div class="highlight"><pre><span></span>systemctl<span class="w"> </span>restart<span class="w"> </span>firewalld.service
+</pre></div>
+<p>重新加载载</p>
+<div class="highlight"><pre><span></span>firewall-cmd<span class="w"> </span>--reload
+</pre></div>
+<h3>参考</h3>
+<blockquote>
+<p>https://www.cnblogs.com/wolf-sun/p/9953667.html</p>
+</blockquote>
+<blockquote>
+<p>https://www.jb51.net/article/135124.htm</p>
+</blockquote>
+
+    </div>
+
+    <!--footer begin-->
+    <br/>
+    <a href="/">Home</a>
+    <hr/>
+    <footer class="site-footer">
+        <p>Lei Wu</p>
+        <p>Chengdu City, Sichuan Province, People's Republic of China</p>
+        <p>Email: <a href="mailto:bllwu@sina.com">bllwu@sina.com</a></p>
+        <p>&copy; 2016-2025, Ar4leii</p>
+    </footer>
+</body>
+</html>

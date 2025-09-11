@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <title>My Blog Post</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <div id="header">
+        <h1>Ar4leii's Blog</h1>
+    </div>
+    <hr/>
+    <!--header end-->
+
+    <div id="content" class="markdown-body">
+        <h2>抓包速查表</h2>
+<h3>常用方法</h3>
+<p>截获 eth0 网卡 80 端口的报文，-s0 防止包截断，并直接以 IP 及 port number 显示</p>
+<div class="highlight"><pre><span></span>tcpdump<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w"> </span>-nn<span class="w"> </span>-s0<span class="w"> </span>-v<span class="w"> </span>port<span class="w"> </span><span class="m">80</span>
+</pre></div>
+<p>截获1.1.1.1主机所有收到的和发出的的报文，并把信息打印到 stdout</p>
+<div class="highlight"><pre><span></span>tcpdump<span class="w"> </span>‘host<span class="w"> </span><span class="m">1</span>.1.1.1’
+</pre></div>
+<p>截获主机 1.1.1.1 和主机 1.1.1.2 或 192.168.111.3 的通信，并且不做解析</p>
+<div class="highlight"><pre><span></span>tcpdump<span class="w"> </span>‘host<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>and<span class="w"> </span><span class="m">1</span>.1.1.2<span class="w"> </span>or<span class="w"> </span><span class="m">192</span>.168.111.3’<span class="w"> </span>-n
+</pre></div>
+<p>截获主机 1.1.1.1 除了和主机 1.1.1.2 之外所有主机通信的 IP 包</p>
+<div class="highlight"><pre><span></span>tcpdump<span class="w"> </span>‘host<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>and<span class="w"> </span>!1.1.1.2’<span class="w"> </span>-n
+</pre></div>
+<p>截获源 IP 是 210.2.2.4 主机发送给目的端口 6800 的所有报文，并把它保存到 a.cap 文件中</p>
+<div class="highlight"><pre><span></span>tcpdump<span class="w"> </span><span class="s1">&#39;src host 210.2.2.4 and dst port 6800&#39;</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1500</span><span class="w"> </span>-w<span class="w"> </span>a.cap
+</pre></div>
+<h3>参数说明</h3>
+<div class="highlight"><pre><span></span>-n<span class="w"> </span>：不解析地址，直接以<span class="w"> </span>IP<span class="w"> </span>及<span class="w"> </span>port<span class="w"> </span>number<span class="w"> </span>显示，而非主机名与服务名称
+-i<span class="w"> </span>：后面接要『监听』的网络接口，例如<span class="w"> </span>eth0,<span class="w"> </span>lo,<span class="w"> </span>ppp0<span class="w"> </span>等等
+-c<span class="w"> </span>：抓包数量，如果没有这个参数，<span class="w"> </span>tcpdump<span class="w"> </span>会持续不断的监听，直到使用者输入<span class="w"> </span><span class="o">[</span>ctrl<span class="o">]</span>-c<span class="w"> </span>为止
+-e<span class="w"> </span>：输出dump的报文的链路层<span class="o">(</span>OSI<span class="w"> </span>第二层<span class="o">)</span>信息（包括源目MAC和以太类型
+-q<span class="w"> </span>：quick<span class="w"> </span>mode，仅列出较为简短的封包信息，每一行的内容比较精简
+-s<span class="w"> </span>：抓包的长度，默认是96字节。如果要把报文保存下来分析，需配置此参数
+-A<span class="w"> </span>：抓包内容以<span class="w"> </span>ASCII<span class="w"> </span>显示，做WWW<span class="w"> </span>的网页抓包分析很有用
+-X<span class="w"> </span>：可以列出十六进制<span class="w"> </span><span class="o">(</span>hex<span class="o">)</span><span class="w"> </span>以及<span class="w"> </span>ASCII<span class="w"> </span>的抓包内容，对于观察内容很有用
+-r<span class="w"> </span>：从后面接的文件中读取数据，这个『文件』是由<span class="w"> </span>-w<span class="w"> </span>所生成的
+-w<span class="w"> </span>：把抓取数据保存到文件，后面接文件名
+-v<span class="w"> </span>：verbose<span class="w"> </span>output，打印详细的输出
+-vv<span class="w"> </span>：more<span class="w"> </span>verbose<span class="w"> </span>output，打印更加详细的输出
+</pre></div>
+<h3>参考</h3>
+<blockquote>
+<p>https://www.tcpdump.org/manpages/tcpdump.1.html</p>
+</blockquote>
+<blockquote>
+<p>https://www.runoob.com/linux/linux-comm-tcpdump.html</p>
+</blockquote>
+<blockquote>
+<p>https://www.zhihu.com/question/403959433/answer/2146997897</p>
+</blockquote>
+<blockquote>
+<p>https://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html</p>
+</blockquote>
+<blockquote>
+<p>https://www.cnblogs.com/maifengqiang/p/3863168.html</p>
+</blockquote>
+
+    </div>
+
+    <!--footer begin-->
+    <br/>
+    <a href="/">Home</a>
+    <hr/>
+    <footer class="site-footer">
+        <p>Lei Wu</p>
+        <p>Chengdu City, Sichuan Province, People's Republic of China</p>
+        <p>Email: <a href="mailto:bllwu@sina.com">bllwu@sina.com</a></p>
+        <p>&copy; 2016-2025, Ar4leii</p>
+    </footer>
+</body>
+</html>

@@ -1,25 +1,3 @@
-<!doctype html>
-<html lang="en-us">
-
-    <head>
-        <title>Ar4leii</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="../../../css/basscss.css" />
-        <link rel="stylesheet" type="text/css" href="../../../css/colors.css" />
-        <link rel="stylesheet" type="text/css" href="../../../css/font.css" />
-        <link type="text/css" rel="stylesheet" href="../../../css/index.css"/>
-    </head>
-
-    <body>
-        <div id="header">
-            <h1>Ar4leii's Blog</h1>
-        </div>
-        <hr/>
-        <!--header end-->
-
-        <link type="text/css" rel="stylesheet" href="../../../editor.md/css/editormd.min.css"/>
-        <div id="editor">
-            <textarea style="display:none;">
 
 # 学习小结：eBPF、preload、ptrace 和 SystemTap
 
@@ -38,9 +16,9 @@ eBPF 全称为 Extended Berkeley Packet Filter,是 Berkeley Packet Filter (BPF) 
 2. **编译**: eBPF 程序被编译成特殊的 eBPF 字节码。这个编译过程通常使用 LLVM 编译器后端完成。
 
 3. **验证**: 内核中的 eBPF 验证器会对字节码进行严格检查,确保程序:
-   - 不会进入无限循环
-   - 不会访问未授权的内存
-   - 不会造成系统崩溃
+- 不会进入无限循环
+- 不会访问未授权的内存
+- 不会造成系统崩溃
 
 4. **JIT 编译**: 通过验证后,eBPF 字节码会被即时(JIT)编译成本地机器码,以提高执行效率。
 
@@ -65,10 +43,10 @@ eBPF 全称为 Extended Berkeley Packet Filter,是 Berkeley Packet Filter (BPF) 
 
 SEC("tracepoint/syscalls/sys_enter_execve")
 int bpf_prog(struct trace_event_raw_sys_enter *ctx) {
-    char comm[16];
-    bpf_get_current_comm(&comm, sizeof(comm));
-    bpf_printk("Process called execve: %s\n", comm);
-    return 0;
+char comm[16];
+bpf_get_current_comm(&comm, sizeof(comm));
+bpf_printk("Process called execve: %s\n", comm);
+return 0;
 }
 
 char LICENSE[] SEC("license") = "GPL";
@@ -136,11 +114,11 @@ preload 技术利用了 Linux 动态链接器(ld.so)的工作机制。当一个�
 static int (*real_open)(const char *pathname, int flags) = NULL;
 
 int open(const char *pathname, int flags) {
-    if (!real_open) {
-        real_open = dlsym(RTLD_NEXT, "open");
-    }
-    printf("Opening file: %s\n", pathname);
-    return real_open(pathname, flags);
+if (!real_open) {
+real_open = dlsym(RTLD_NEXT, "open");
+}
+printf("Opening file: %s\n", pathname);
+return real_open(pathname, flags);
 }
 ```
 
@@ -209,19 +187,19 @@ ptrace (process trace) 是一个系统调用,它提供了一种机制,允许一�
 #include <stdio.h>
 
 int main() {
-    pid_t pid = fork();
-    if (pid == 0) {
-        // 子进程
-        ptrace(PTRACE_TRACEME, 0, NULL, NULL);
-        execl("/bin/ls", "ls", NULL);
-    } else {
-        // 父进程
-        wait(NULL);
-        printf("Child process stopped, now we can inspect it.\n");
-        // 可以在这里读取寄存器、内存等
-        ptrace(PTRACE_CONT, pid, NULL, NULL);
-    }
-    return 0;
+pid_t pid = fork();
+if (pid == 0) {
+// 子进程
+ptrace(PTRACE_TRACEME, 0, NULL, NULL);
+execl("/bin/ls", "ls", NULL);
+} else {
+// 父进程
+wait(NULL);
+printf("Child process stopped, now we can inspect it.\n");
+// 可以在这里读取寄存器、内存等
+ptrace(PTRACE_CONT, pid, NULL, NULL);
+}
+return 0;
 }
 ```
 
@@ -230,13 +208,13 @@ int main() {
 1. `fork()`: 创建一个子进程。
 
 2. 在子进程中:
-   - `ptrace(PTRACE_TRACEME, 0, NULL, NULL)`: 表示该进程将被其父进程跟踪。
-   - `execl("/bin/ls", "ls", NULL)`: 执行 `ls` 命令。
+- `ptrace(PTRACE_TRACEME, 0, NULL, NULL)`: 表示该进程将被其父进程跟踪。
+- `execl("/bin/ls", "ls", NULL)`: 执行 `ls` 命令。
 
 3. 在父进程中:
-   - `wait(NULL)`: 等待子进程停止。
-   - 这里可以插入代码来检查子进程的状态。
-   - `ptrace(PTRACE_CONT, pid, NULL, NULL)`: 让子进程继续执行。
+- `wait(NULL)`: 等待子进程停止。
+- 这里可以插入代码来检查子进程的状态。
+- `ptrace(PTRACE_CONT, pid, NULL, NULL)`: 让子进程继续执行。
 
 ### ptrace 的高级应用
 
@@ -290,8 +268,8 @@ SystemTap 是一个复杂的系统,它结合了多种技术来实现其功能。
 
 ```stap
 probe syscall.open {
-    printf("Process %d (%s) called open on file: %s\n",
-           pid(), execname(), argstr)
+printf("Process %d (%s) called open on file: %s\n",
+pid(), execname(), argstr)
 }
 ```
 
@@ -334,24 +312,24 @@ probe syscall.open {
 这四种技术都旨在提供对系统行为的深入洞察,但它们各有特点:
 
 1. **eBPF**:
-   - 优势: 高性能、安全、灵活。
-   - 适用: 需要高性能、低开销的系统级观测和网络编程。
-   - 场景: 云原生环境、高性能网络、实时监控。
+- 优势: 高性能、安全、灵活。
+- 适用: 需要高性能、低开销的系统级观测和网络编程。
+- 场景: 云原生环境、高性能网络、实时监控。
 
 2. **preload**:
-   - 优势: 简单、无需修改原程序。
-   - 适用: 需要快速修改程序行为而不改动源码。
-   - 场景: 兼容性问题修复、简单的行为审计。
+- 优势: 简单、无需修改原程序。
+- 适用: 需要快速修改程序行为而不改动源码。
+- 场景: 兼容性问题修复、简单的行为审计。
 
 3. **ptrace**:
-   - 优势: 功能强大、细粒度控制。
-   - 适用: 需要详细分析程序行为,如调试器。
-   - 场景: 程序调试、逆向工程、复杂的程序行为分析。
+- 优势: 功能强大、细粒度控制。
+- 适用: 需要详细分析程序行为,如调试器。
+- 场景: 程序调试、逆向工程、复杂的程序行为分析。
 
 4. **SystemTap**:
-   - 优势: 全面、灵活、脚本化。
-   - 适用: 需要复杂、自定义的系统观测逻辑。
-   - 场景: 复杂的性能分析、系统行为研究、自定义监控。
+- 优势: 全面、灵活、脚本化。
+- 适用: 需要复杂、自定义的系统观测逻辑。
+- 场景: 复杂的性能分析、系统行为研究、自定义监控。
 
 选择哪种技术主要取决于:
 - 性能要求
@@ -364,24 +342,24 @@ probe syscall.open {
 在安全检测领域,这些技术提供了强大的工具,能够深入系统底层,实现各种复杂的安全监控和防御策略:
 
 1. **eBPF**:
-   - **网络安全**: 利用 eBPF 可以实现高效的网络入侵检测系统(IDS)。例如,Cloudflare 使用 eBPF 构建了 L4Drop,一个能够在网络层快速检测和阻止 DDoS 攻击的工具。
-   - **系统调用监控**: eBPF 可以用来监控可疑的系统调用序列。例如,Falco 项目使用 eBPF 来检测异常的容器行为,如意外的特权提升尝试。
-   - **文件完整性监控**: 通过监控文件系统相关的系统调用,eBPF 可以实时检测文件修改,帮助发现潜在的恶意软件活动。Sysdig 公司的产品就利用这一特性来增强容器环境的安全性。
+- **网络安全**: 利用 eBPF 可以实现高效的网络入侵检测系统(IDS)。例如,Cloudflare 使用 eBPF 构建了 L4Drop,一个能够在网络层快速检测和阻止 DDoS 攻击的工具。
+- **系统调用监控**: eBPF 可以用来监控可疑的系统调用序列。例如,Falco 项目使用 eBPF 来检测异常的容器行为,如意外的特权提升尝试。
+- **文件完整性监控**: 通过监控文件系统相关的系统调用,eBPF 可以实时检测文件修改,帮助发现潜在的恶意软件活动。Sysdig 公司的产品就利用这一特性来增强容器环境的安全性。
 
 2. **preload**:
-   - **API 劫持与审计**: 通过 preload 机制,可以劫持关键的库函数调用。例如,可以劫持 `SSL_read` 和 `SSL_write` 函数来审计加密流量,这在一些企业级安全产品中被用来监控内部数据泄露。
-   - **内存保护**: 可以使用 preload 来增强程序的内存安全性。例如,通过重写内存分配函数,可以实现类似 AddressSanitizer 的功能,检测缓冲区溢出等内存错误。
-   - **防御绕过检测**: 一些恶意软件会尝试绕过系统的安全机制。通过 preload,可以监控这些绕过尝试,如检测对 `ptrace` 的调用来发现反调试行为。
+- **API 劫持与审计**: 通过 preload 机制,可以劫持关键的库函数调用。例如,可以劫持 `SSL_read` 和 `SSL_write` 函数来审计加密流量,这在一些企业级安全产品中被用来监控内部数据泄露。
+- **内存保护**: 可以使用 preload 来增强程序的内存安全性。例如,通过重写内存分配函数,可以实现类似 AddressSanitizer 的功能,检测缓冲区溢出等内存错误。
+- **防御绕过检测**: 一些恶意软件会尝试绕过系统的安全机制。通过 preload,可以监控这些绕过尝试,如检测对 `ptrace` 的调用来发现反调试行为。
 
 3. **ptrace**:
-   - **恶意软件分析**: 安全研究人员经常使用基于 ptrace 的工具(如 strace)来分析恶意软件的行为。例如,可以跟踪恶意软件的系统调用来理解其如何与系统交互。
-   - **反调试技术研究**: ptrace 可以用来实现和研究高级的反调试技术。例如,可以创建一个父进程用 ptrace 附加到子进程,从而阻止调试器附加。
-   - **进程注入检测**: 通过监控特定的系统调用(如 `mmap`、`ptrace`)，可以检测进程注入技术。一些端点检测与响应(EDR)系统使用这种方法来识别潜在的恶意行为。
+- **恶意软件分析**: 安全研究人员经常使用基于 ptrace 的工具(如 strace)来分析恶意软件的行为。例如,可以跟踪恶意软件的系统调用来理解其如何与系统交互。
+- **反调试技术研究**: ptrace 可以用来实现和研究高级的反调试技术。例如,可以创建一个父进程用 ptrace 附加到子进程,从而阻止调试器附加。
+- **进程注入检测**: 通过监控特定的系统调用(如 `mmap`、`ptrace`)，可以检测进程注入技术。一些端点检测与响应(EDR)系统使用这种方法来识别潜在的恶意行为。
 
 4. **SystemTap**:
-   - **高级威胁检测**: SystemTap 的灵活性使其成为创建复杂安全监控脚本的理想工具。例如,可以编写脚本来检测特定的攻击模式,如检测短时间内多次失败的登录尝试来识别暴力破解攻击。
-   - **异常行为分析**: 通过监控系统调用、网络活动和文件系统操作,SystemTap 可以建立系统的行为基线,并检测偏离这一基线的异常活动。Red Hat 的 Insights 服务就利用类似技术来提供预测性维护和安全分析。
-   - **性能异常关联**: 某些安全事件可能会导致性能异常。SystemTap 可以同时监控性能指标和安全相关事件,帮助关联性能问题和潜在的安全威胁。
+- **高级威胁检测**: SystemTap 的灵活性使其成为创建复杂安全监控脚本的理想工具。例如,可以编写脚本来检测特定的攻击模式,如检测短时间内多次失败的登录尝试来识别暴力破解攻击。
+- **异常行为分析**: 通过监控系统调用、网络活动和文件系统操作,SystemTap 可以建立系统的行为基线,并检测偏离这一基线的异常活动。Red Hat 的 Insights 服务就利用类似技术来提供预测性维护和安全分析。
+- **性能异常关联**: 某些安全事件可能会导致性能异常。SystemTap 可以同时监控性能指标和安全相关事件,帮助关联性能问题和潜在的安全威胁。
 
 这些技术的组合使用可以构建强大的安全检测系统。例如:
 - 使用 eBPF 进行高效的实时网络流量分析和系统调用监控。
@@ -401,45 +379,3 @@ probe syscall.open {
 - 合规性: 确保监控和检测活动符合相关的法律和隐私规定,特别是在处理敏感数据时。
 
 
-            </textarea>
-        </div>
-
-        <script src="../../../editor.md/examples/js/jquery.min.js"></script>
-        <script src="../../../editor.md/lib/flowchart.min.js"></script>
-        <script src="../../../editor.md/lib/jquery.flowchart.min.js"></script>
-        <script src="../../../editor.md/lib/marked.min.js"></script>
-        <script src="../../../editor.md/lib/prettify.min.js"></script>
-        <script src="../../../editor.md/lib/raphael.min.js"></script>
-        <script src="../../../editor.md/lib/underscore.min.js"></script>
-        <script src="../../../editor.md/editormd.min.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                var editor = editormd.markdownToHTML("editor", {
-                    width: "100%",
-                    height: "500px",
-                    watch: true,
-                    path : "../../../editor.md/lib/",
-                    // readOnly: true,
-                    watch: true,
-                    toolbar: false,
-                    // autoHeight: true,
-                });
-            });
-        </script>
-
-
-        <!--footer begin-->
-        <br/>
-        <a href="index.html">返回</a>
-        <a href="https://araleii.me">主页</a>
-        <hr/>
-        <div id="footer">
-            <p class="MsoNormal">&nbsp;</p>
-            &nbsp;<DT><B><FONT COLOR="#000080"><a href="mailto:bllwu@sina.com">Lei Wu</a></FONT></B></DT>
-            <DT>Chengdu City, Sichuan Province</DT>
-            <DT>People's Republic of China<BR></DT>
-            <FONT COLOR="#000080">Email: <a href="mailto:bllwu@sina.com">bllwu@sina.com</a><BR>
-                Copyright 2016-2025, Ar4leii</FONT></div>
-        </div>
-    </body>
-</html>
