@@ -1,53 +1,48 @@
-/* 全局基础设置 */
-:root {
-    --text-color: #333;
-    --link-color: #007bff;
-    --date-color: #888;
-    --border-color: #eee;
-}
-
+/* 纯正早期 WWW 风格 */
 body {
-    font-family: -apple-system, "Helvetica Neue", "Arial", sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
+    font-family: "Times New Roman", Times, serif;
+    color: #000000;
+    background-color: #ffffff;
     max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.4;
 }
 
-/* 导航与页眉 */
-header h1 { margin-bottom: 0.5rem; }
-header p { color: var(--date-color); margin-top: 0; }
-hr { border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+h1 { font-size: 3em; margin-top: 0; margin-bottom: 15px; }
 
-/* 文章列表平铺布局 */
-.post-list { list-style: none; padding: 0; }
-.post-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.8rem 0;
-    border-bottom: 1px dashed var(--border-color);
+nav { margin-bottom: 25px; }
+
+nav a, .post h3 a {
+    font-size: 1.0em;
+    margin-right: 15px;
+    color: #551A8B; /* 经典的复古紫蓝色 */
+    text-decoration: underline;
 }
 
-.post-item a {
-    text-decoration: none;
-    color: var(--link-color);
-    font-weight: 500;
-    flex-grow: 1;
+hr.thick-line {
+    border: none;
+    border-top: 3px solid #000000;
+    margin: 30px 0;
 }
 
-.post-item .date {
-    color: var(--date-color);
-    font-size: 0.9rem;
-    font-family: monospace;
-    margin-left: 1rem;
+h2 { font-size: 1.5em; margin-bottom: 30px; }
+
+/* 内容区域排版 */
+.post, .content { margin-bottom: 45px; }
+.post h3 { font-size: 1.2em; margin: 0 0 5px 0; }
+.post .date { font-size: 1.1em; color: #333333; margin-bottom: 15px; }
+
+p, li {
+    font-size: 1.0em;
+    margin-bottom: 1em;
 }
 
-/* 响应式适配 */
-@media (max-width: 600px) {
-    .post-item { flex-direction: column; }
-    .post-item .date { margin-left: 0; margin-top: 0.2rem; }
-}
+ul { padding-left: 40px; margin-bottom: 20px; }
 
-footer { font-size: 0.85rem; color: var(--date-color); text-align: center; margin-top: 4rem; }
+footer {
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    line-height: 1.6;
+}

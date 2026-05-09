@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>About - Ar4leii's Blog</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+</head>
+<body>
+
+    <h1>$ whoami</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="mailto:araleiiiiii@gmail.com">Contact</a>
+    </nav>
+
+    <hr class="thick-line">
+
+    <h2><u>; x86-64 Linux<br/>
+section .data<br/>
+&nbsp;&nbsp; msg db "Hello!", 0xA<br/>
+section .text<br/>
+&nbsp;&nbsp; global _start<br/>
+_start:<br/>
+&nbsp;&nbsp; mov rax, 1<br/>
+&nbsp;&nbsp; mov rdi, 1<br/>
+&nbsp;&nbsp; mov rsi, msg<br/>
+&nbsp;&nbsp; mov rdx, 14<br/>
+&nbsp;&nbsp; syscall<br/>
+&nbsp;&nbsp; mov rax, 60<br/>
+&nbsp;&nbsp; xor rdi, rdi<br/>
+&nbsp;&nbsp; syscall</u></h2>
+
+    <div class="content">
+        <p>一个主要靠将咖啡因转化为代码来维持生命体征的碳基生物。</p>
+        <p>大部分时间过着持续被客户鞭打的生过，确实在走向社会之后发现，还是直接跟机器打交道比较简单——至少它们崩溃之前，大部分时候还会好心地给你抛个异常栈。</p>
+    </div>
+
+    <h2><u>What do I actually do?</u></h2>
+
+    <div class="content">
+        <p>赛博世界里打杂的日子</p>
+        <ul>
+            <li> 过去几年里，我花了一些时间在做应用层攻击检测、主机安全、漏扫、安全分析等方面做了一些微小的工作。</li>
+            <li> 曾使用用一些听起来很唬人的方案，后来有了大模型感觉被降维打击了</li>
+        </ul>
+    </div>
+
+    <h2><u>"Achievements"</u></h2>
+
+    <div class="content">
+        <p>如果要问有什么可以说的成果，真说不出来什么：</p>
+        <ul>
+            <li>（有些）我的代码目前还算稳定地运行在一些比较大的云平台上。这对我来说既是一种心理安慰，也是一种持续性的焦虑来源。</li>
+        </ul>
+        <p>总之，大部分时间在制造 Bug<del>（摸鱼）</del>，小部分时间在修别人或者自己几年前留下的 Bug。</p>
+    </div>
+
+    <hr class="thick-line">
+
+    <footer>
+        © 1996-2026 Ar4leii<br>
+        Lei Wu | Chengdu City, Sichuan Province, PRC
+    </footer>
+
+</body>
+</html>
