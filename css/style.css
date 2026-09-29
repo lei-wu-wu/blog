@@ -386,6 +386,19 @@ img {
     line-height: 1.68;
 }
 
+.about-facts .about-fact-wide {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 1.2rem;
+    padding: 1.15rem 0;
+}
+
+.about-facts .about-fact-wide strong {
+    margin: 0;
+    padding-top: 0.1rem;
+}
+
 .position-summary {
     color: var(--ink);
     font-size: 1.08rem;
@@ -770,6 +783,14 @@ footer {
 
     .about-facts {
         display: block;
+    }
+
+    .about-facts .about-fact-wide {
+        display: block;
+    }
+
+    .about-facts .about-fact-wide strong {
+        margin-bottom: 0.3rem;
     }
 
     .position-list > div {
