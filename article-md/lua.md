@@ -1,4 +1,4 @@
-# 重看几条 Lua 性能技巧：局部变量、Table 和字符串遍历
+# Lua 性能技巧：局部变量、Table 和字符串遍历
 
 ![lua](../assets/images/lua.png)
 
